@@ -1,8 +1,9 @@
 package it.sevenbits.IO.File;
 
+import it.sevenbits.Exceptions.CloseableException;
 import it.sevenbits.Exceptions.ReaderException;
-import it.sevenbits.IClosable;
-import it.sevenbits.IReader;
+import it.sevenbits.Interfaces.IClosable;
+import it.sevenbits.Interfaces.IReader;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -31,21 +32,21 @@ public class FileReader implements IClosable, IReader {
     }
 
     @Override
-    public boolean hasNext() throws ReaderException, IOException {
+    public boolean hasNext() throws ReaderException {
         try {
             byteSymbol = reader.read();
             return byteSymbol != -1;
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new ReaderException("reader.hasNext() error", e);
         }
     }
 
     @Override
-    public void close() throws Exception {
+    public void close() throws CloseableException {
         try {
             reader.close();
-        } catch (IOException e) {
-            throw new IOException("reader.close() error", e);
+        } catch (Exception e) {
+            throw new CloseableException("reader.close() error", e);
         }
     }
 

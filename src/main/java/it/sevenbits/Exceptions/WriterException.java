@@ -1,6 +1,6 @@
 package it.sevenbits.Exceptions;
 
-public class WriterException extends Throwable {
+public class WriterException extends Exception {
 
     public WriterException(final String message) {
         super(message);

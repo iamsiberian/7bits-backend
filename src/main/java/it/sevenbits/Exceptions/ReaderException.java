@@ -1,8 +1,6 @@
 package it.sevenbits.Exceptions;
 
-import java.io.IOException;
-
-public class ReaderException extends Throwable {
+public class ReaderException extends Exception {
 
     public ReaderException(final String message) {
         super(message);

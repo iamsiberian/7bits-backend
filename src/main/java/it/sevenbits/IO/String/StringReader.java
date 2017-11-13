@@ -1,7 +1,7 @@
 package it.sevenbits.IO.String;
 
 import it.sevenbits.Exceptions.ReaderException;
-import it.sevenbits.IReader;
+import it.sevenbits.Interfaces.IReader;
 
 public class StringReader implements IReader {
 

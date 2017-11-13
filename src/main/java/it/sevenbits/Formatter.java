@@ -2,79 +2,35 @@ package it.sevenbits;
 
 import it.sevenbits.Exceptions.ReaderException;
 import it.sevenbits.Exceptions.WriterException;
-import it.sevenbits.IO.File.FileReader;
-import it.sevenbits.IO.File.FileWriter;
-import it.sevenbits.IO.String.StringReader;
-import it.sevenbits.IO.String.StringWriter;
-
-import java.io.IOException;
+import it.sevenbits.Interfaces.IReader;
+import it.sevenbits.Interfaces.IWriter;
 
 public class Formatter {
+
+    private static int SPACESINTAB = 4;
     private static int countLevel = 0;
     private static boolean isSpacesBeforeCode = true;
-    public static void main(final String[] args) throws ReaderException, WriterException, IOException {
-        if (args.length == 3 && args[0].equals("-f")) {
-            try (
-                    FileReader fileReader = new FileReader(args[1]);
-                    FileWriter fileWriter = new FileWriter(args[2])) {
-                CharacterArrayList characterArrayList = new CharacterArrayList(fileReader);
-                char c;
-                char n;
-                for (int i = 0; i < characterArrayList.size(); i++) {
-                    c = characterArrayList.get(i);
-                    n = characterArrayList.get(i + 1);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+    //private static boolean isMiddleOfTheLine = false;
+    //private static char c;
 
-        } else if (args.length == 3 && args[0].equals("-s")) {
-            char c;
-            StringReader stringReader = new StringReader(args[1]);
-            StringWriter stringWriter = new StringWriter(args[2]);
-            while (stringReader.hasNext()) {
-                c = stringReader.readNext();
-                //charRecord(c, stringWriter);
+    public void format(final IReader iReader, final IWriter iWriter) throws ReaderException, WriterException {
+        char c;
+        try {
+            while (iReader.hasNext()) {
+                c = iReader.readNext();
+
+                System.out.print(c);
+
+                iWriter.write(c);
             }
-            stringWriter.close();
+        } catch (ReaderException e) {
+            throw new ReaderException("ReaderException in Formatter.format", e);
+        } catch (WriterException e) {
+            throw new WriterException("WriterException in Formatter.format", e);
         }
     }
 
-    public static void charRecord(final char c, final char n, final IWriter writer) throws IOException, WriterException {
-        switch (c) {
-            case '{' : {
-                countLevel++;
-                writer.write('{');
-                return;
-            }
-            case '}' : {
-                countLevel--;
-                writer.write('}');
-                return;
-            }
-            case ' ' : if (!isSpacesBeforeCode) {
-                writer.write(' ');
-                return;
-            }
-            case '\n' : {
-                writer.write('\n');
-                tabRecorder(writer, countLevel);
-                isSpacesBeforeCode = false;
-                return;
-            }
-            case ';' : {
-                writer.write(';');
-                tabRecorder(writer, countLevel);
-                return;
-            }
-            default: {
-                isSpacesBeforeCode = false;
-                writer.write(c);
-            }
-        }
-    }
-
-    public static void tabRecorder(final IWriter iWriter , final int countLevel) throws IOException, WriterException {
+    public void tabRecorder(final IWriter iWriter) throws WriterException {
         for (int i = 0; i < countLevel * 4; i++) {
             iWriter.write(' ');
         }
