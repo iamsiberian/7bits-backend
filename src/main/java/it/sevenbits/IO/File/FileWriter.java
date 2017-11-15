@@ -7,10 +7,20 @@ import it.sevenbits.Interfaces.IWriter;
 
 import java.io.Writer;
 
+/**
+ * Class for writing char to file
+ *
+ * @author Minyukhin Ilya
+ */
 public class FileWriter implements IWriter, IClosable {
 
     private Writer writer;
 
+    /**
+     * the constructor initializes instance of a class java.io.FileWriter
+     * @param pathname path to file
+     * @throws WriterException if an error occurred in FileWriter
+     */
     public FileWriter(final String pathname) throws WriterException {
         try {
             writer = new java.io.FileWriter(pathname);

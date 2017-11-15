@@ -7,13 +7,20 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Class for writing char to string
+ *
+ * @author Minyukhin Ilya
+ */
+
 public class StringWriter implements IWriter {
 
-    private String filepath;
     private StringBuffer stringBuffer;
 
-    public StringWriter(final String filepath) {
-        this.filepath = filepath;
+    /**
+     * the constructor initializes the stringBuffer
+     */
+    public StringWriter() {
         stringBuffer = new StringBuffer("");
     }
 
@@ -22,6 +29,10 @@ public class StringWriter implements IWriter {
         stringBuffer.append(c);
     }
 
+    /**
+     * converts a stringBuffer to a String
+     * @return the value of a stringBuffer converted to a string
+     */
     public String toString() {
         return stringBuffer.toString();
     }

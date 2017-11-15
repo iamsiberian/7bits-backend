@@ -9,11 +9,22 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Reader;
 
+/**
+ * Class for reading char from file
+ *
+ * @author Minyukhin Ilya
+ */
 public class FileReader implements IClosable, IReader {
 
     private Reader reader;
     private int byteSymbol;
 
+    /**
+     * the constructor initializes instance of a class java.io.FileReader
+     *
+     * @param pathname path to file
+     * @throws ReaderException if an error occurred in FileReader
+     */
     public FileReader(final String pathname) throws ReaderException {
         try {
             reader = new java.io.FileReader(pathname);

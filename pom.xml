@@ -5,22 +5,58 @@
   <groupId>it.sevenbits</groupId>
   <artifactId>backendtask01</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<configuration>
-					<archive>
-						<manifest>
-							<mainClass>it.sevenbits.courses.formatter.App</mainClass>
-						</manifest>
-					</archive>
-				</configuration>
-            </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.2</version>
+            <configuration>
+              <source>1.8</source>
+              <target>1.8</target>
+            </configuration>
+          </plugin>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-jar-plugin</artifactId>
+              <version>2.4</version>
+          <configuration>
+              <archive>
+                <manifest>
+                  <mainClass>it.sevenbits.App</mainClass>
+                </manifest>
+              </archive>
+          </configuration>
+          </plugin>
+          <plugin>
+              <artifactId>maven-assembly-plugin</artifactId>
+
+              <executions>
+                  <execution>
+                      <phase>package</phase>
+                      <goals>
+                          <goal>single</goal>
+                      </goals>
+                      <configuration>
+
+                      </configuration>
+                  </execution>
+              </executions>
+              <configuration>
+                  <archive>
+                      <manifest>
+                          <mainClass>it.sevenbits.App</mainClass>
+                      </manifest>
+                  </archive>
+                  <descriptorRefs>
+                          <descriptorRef>jar-with-dependencies</descriptorRef>
+                  </descriptorRefs>
+              </configuration>
+          </plugin>
         </plugins>
     </build>
-    <packaging>jar</packaging>
+    
 
   <name>backendtask01</name>
   <url>http://maven.apache.org</url>
