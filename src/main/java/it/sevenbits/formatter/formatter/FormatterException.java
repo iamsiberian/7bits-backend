@@ -1,4 +1,4 @@
-package it.sevenbits.Exceptions;
+package it.sevenbits.formatter.formatter;
 
 /**
  * Class wrapper for Exception

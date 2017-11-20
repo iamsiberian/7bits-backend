@@ -1,11 +1,12 @@
-package it.sevenbits;
+package it.sevenbits.formatter;
 
-import it.sevenbits.Exceptions.CloseableException;
-import it.sevenbits.Exceptions.FormatterException;
-import it.sevenbits.Exceptions.ReaderException;
-import it.sevenbits.Exceptions.WriterException;
-import it.sevenbits.IO.File.FileReader;
-import it.sevenbits.IO.File.FileWriter;
+import it.sevenbits.formatter.formatter.Formatter;
+import it.sevenbits.formatter.formatter.FormatterException;
+import it.sevenbits.formatter.io.exceptions.CloseableException;
+import it.sevenbits.formatter.io.exceptions.ReaderException;
+import it.sevenbits.formatter.io.exceptions.WriterException;
+import it.sevenbits.formatter.io.file.FileReader;
+import it.sevenbits.formatter.io.file.FileWriter;
 
 /**
  * Main class

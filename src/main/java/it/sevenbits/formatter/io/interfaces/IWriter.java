@@ -1,6 +1,6 @@
-package it.sevenbits.Interfaces;
+package it.sevenbits.formatter.io.interfaces;
 
-import it.sevenbits.Exceptions.WriterException;
+import it.sevenbits.formatter.io.exceptions.WriterException;
 
 /**
  * Interface for writing by character

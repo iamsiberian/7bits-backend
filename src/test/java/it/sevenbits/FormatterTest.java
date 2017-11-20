@@ -1,18 +1,19 @@
 package it.sevenbits;
 
-import it.sevenbits.Exceptions.ReaderException;
-import it.sevenbits.Exceptions.WriterException;
-import it.sevenbits.IO.String.StringReader;
-import it.sevenbits.IO.String.StringWriter;
+import it.sevenbits.formatter.formatter.Formatter;
+import it.sevenbits.formatter.io.exceptions.ReaderException;
+import it.sevenbits.formatter.io.exceptions.WriterException;
+import it.sevenbits.formatter.io.string.StringReader;
+import it.sevenbits.formatter.io.string.StringWriter;
 import org.junit.Test;
 
 import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 
-public class TestApp {
+public class FormatterTest {
     @Test
-    public void test1() throws IOException, ReaderException, WriterException{
+    public void test1() throws IOException, ReaderException, WriterException {
         String testStroke = "   aaa {\nbbbb\nccc;\n}\n aaa {\n}";
         String trueStroke = "aaa {\n    bbbbccc;\n    }\naaa {\n    }";
 

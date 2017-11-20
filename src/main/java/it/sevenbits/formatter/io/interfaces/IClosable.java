@@ -1,6 +1,6 @@
-package it.sevenbits.Interfaces;
+package it.sevenbits.formatter.io.interfaces;
 
-import it.sevenbits.Exceptions.CloseableException;
+import it.sevenbits.formatter.io.exceptions.CloseableException;
 
 /**
  * Interface wrapper for AutoClosable

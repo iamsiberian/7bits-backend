@@ -1,11 +1,7 @@
-package it.sevenbits.IO.String;
+package it.sevenbits.formatter.io.string;
 
-import it.sevenbits.Exceptions.WriterException;
-import it.sevenbits.Interfaces.IWriter;
-
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import it.sevenbits.formatter.io.exceptions.WriterException;
+import it.sevenbits.formatter.io.interfaces.IWriter;
 
 /**
  * Class for writing char to string
@@ -15,18 +11,18 @@ import java.io.IOException;
 
 public class StringWriter implements IWriter {
 
-    private StringBuffer stringBuffer;
+    private StringBuilder stringBuilder;
 
     /**
      * the constructor initializes the stringBuffer
      */
     public StringWriter() {
-        stringBuffer = new StringBuffer("");
+        stringBuilder = new StringBuilder("");
     }
 
     @Override
     public void write(final char c) throws WriterException {
-        stringBuffer.append(c);
+        stringBuilder.append(c);
     }
 
     /**
@@ -34,6 +30,6 @@ public class StringWriter implements IWriter {
      * @return the value of a stringBuffer converted to a string
      */
     public String toString() {
-        return stringBuffer.toString();
+        return stringBuilder.toString();
     }
 }

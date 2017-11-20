@@ -1,6 +1,6 @@
-package it.sevenbits.Interfaces;
+package it.sevenbits.formatter.io.interfaces;
 
-import it.sevenbits.Exceptions.ReaderException;
+import it.sevenbits.formatter.io.exceptions.ReaderException;
 
 /**
  * Interface for reading by character

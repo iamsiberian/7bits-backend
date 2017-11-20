@@ -1,9 +1,9 @@
-package it.sevenbits;
+package it.sevenbits.formatter.formatter;
 
-import it.sevenbits.Exceptions.ReaderException;
-import it.sevenbits.Exceptions.WriterException;
-import it.sevenbits.Interfaces.IReader;
-import it.sevenbits.Interfaces.IWriter;
+import it.sevenbits.formatter.io.exceptions.ReaderException;
+import it.sevenbits.formatter.io.exceptions.WriterException;
+import it.sevenbits.formatter.io.interfaces.IReader;
+import it.sevenbits.formatter.io.interfaces.IWriter;
 
 /**
  * class Formatter with a single method for formatting text

@@ -1,9 +1,9 @@
-package it.sevenbits.IO.File;
+package it.sevenbits.formatter.io.file;
 
-import it.sevenbits.Exceptions.CloseableException;
-import it.sevenbits.Exceptions.ReaderException;
-import it.sevenbits.Interfaces.IClosable;
-import it.sevenbits.Interfaces.IReader;
+import it.sevenbits.formatter.io.exceptions.CloseableException;
+import it.sevenbits.formatter.io.exceptions.ReaderException;
+import it.sevenbits.formatter.io.interfaces.IClosable;
+import it.sevenbits.formatter.io.interfaces.IReader;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -18,6 +18,7 @@ public class FileReader implements IClosable, IReader {
 
     private Reader reader;
     private int byteSymbol;
+    private int prevByteSymbol;
 
     /**
      * the constructor initializes instance of a class java.io.FileReader
@@ -28,25 +29,29 @@ public class FileReader implements IClosable, IReader {
     public FileReader(final String pathname) throws ReaderException {
         try {
             reader = new java.io.FileReader(pathname);
+            byteSymbol = reader.read();
         } catch (FileNotFoundException e) {
             throw new ReaderException("file not found", e);
+        } catch (IOException e) {
+            throw new ReaderException("file can not read", e);
         }
     }
 
     @Override
     public char readNext() throws ReaderException {
-        if (byteSymbol > -1) {
-            return (char) byteSymbol;
-        } else {
-            throw new ReaderException("file is ended");
+        try {
+            prevByteSymbol = byteSymbol;
+            byteSymbol = reader.read();
+            return (char) prevByteSymbol;
+        } catch (IOException e) {
+            throw new ReaderException("file is ended", e);
         }
     }
 
     @Override
     public boolean hasNext() throws ReaderException {
         try {
-            byteSymbol = reader.read();
-            return byteSymbol != -1;
+            return byteSymbol >= 0;
         } catch (Exception e) {
             throw new ReaderException("reader.hasNext() error", e);
         }

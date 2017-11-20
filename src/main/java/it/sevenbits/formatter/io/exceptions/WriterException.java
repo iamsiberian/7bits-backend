@@ -1,18 +1,18 @@
-package it.sevenbits.Exceptions;
+package it.sevenbits.formatter.io.exceptions;
 
 /**
  * Class wrapper for Exception
  *
  * @author Minyukhin Ilya
  */
-public class ReaderException extends Exception {
+public class WriterException extends Exception {
 
     /**
      * basic constructor
      *
      * @param message exception text
      */
-    public ReaderException(final String message) {
+    public WriterException(final String message) {
         super(message);
     }
 
@@ -21,7 +21,7 @@ public class ReaderException extends Exception {
      *
      * @param cause exception object
      */
-    public ReaderException(final Throwable cause) {
+    public WriterException(final Throwable cause) {
         super(cause);
     }
 
@@ -31,7 +31,7 @@ public class ReaderException extends Exception {
      * @param message exception text
      * @param cause exception object
      */
-    public ReaderException(final String message, final Throwable cause) {
+    public WriterException(final String message, final Throwable cause) {
         super(message, cause);
     }
 }
