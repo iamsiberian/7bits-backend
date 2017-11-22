@@ -18,7 +18,7 @@ public class FileReader implements IClosable, IReader {
 
     private Reader reader;
     private int byteSymbol;
-    private int prevByteSymbol;
+    //private int prevByteSymbol;
 
     /**
      * the constructor initializes instance of a class java.io.FileReader
@@ -40,7 +40,7 @@ public class FileReader implements IClosable, IReader {
     @Override
     public char readNext() throws ReaderException {
         try {
-            prevByteSymbol = byteSymbol;
+            int prevByteSymbol = byteSymbol;
             byteSymbol = reader.read();
             return (char) prevByteSymbol;
         } catch (IOException e) {
