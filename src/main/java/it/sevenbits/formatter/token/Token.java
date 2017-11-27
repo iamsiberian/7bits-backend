@@ -1,4 +1,6 @@
-package it.sevenbits.formatter;
+package it.sevenbits.formatter.token;
+
+import it.sevenbits.formatter.token.IToken;
 
 /**
  * class Token is designed to store lexemes and their names
