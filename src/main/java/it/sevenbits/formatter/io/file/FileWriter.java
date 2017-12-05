@@ -3,6 +3,7 @@ package it.sevenbits.formatter.io.file;
 import it.sevenbits.formatter.io.exceptions.CloseableException;
 import it.sevenbits.formatter.io.exceptions.WriterException;
 import it.sevenbits.formatter.io.interfaces.IClosable;
+import it.sevenbits.formatter.io.interfaces.IStringWriter;
 import it.sevenbits.formatter.io.interfaces.IWriter;
 
 import java.io.Writer;
@@ -12,7 +13,7 @@ import java.io.Writer;
  *
  * @author Minyukhin Ilya
  */
-public class FileWriter implements IWriter, IClosable {
+public class FileWriter implements IWriter, IClosable, IStringWriter {
 
     private Writer writer;
 
@@ -44,6 +45,15 @@ public class FileWriter implements IWriter, IClosable {
             writer.close();
         } catch (Exception e) {
             throw new CloseableException("writer.close() error", e);
+        }
+    }
+
+    @Override
+    public void write(String s) throws WriterException {
+        try {
+            writer.write(s);
+        } catch (Exception e) {
+            throw new  WriterException("erroe in write(String s);", e);
         }
     }
 }
