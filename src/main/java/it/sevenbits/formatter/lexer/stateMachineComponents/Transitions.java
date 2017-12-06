@@ -13,12 +13,12 @@ public class Transitions implements INextState {
         hashMap.put(new Pair(new State("StartLexeme"), ';'), new State("EndLexeme"));
 
         hashMap.put(new Pair(new State("StartLexeme"),'\n'), new State("EndLexeme"));
-*/
+
         hashMap.put(new Pair(new State("StartLexeme"),' '), new State("WriteWhiteSpaces"));
         hashMap.put(new Pair(new State("WriteWhiteSpaces"),' '), new State("WriteWhiteSpaces"));
-/*
+*/
         hashMap.put(new Pair(new State("StartLexeme"),' '), new State("EndLexeme"));
-
+/*
         hashMap.put(new Pair(new State("StartLexeme"),'{'), new State("EndLexeme"));
         hashMap.put(new Pair(new State("StartLexeme"),'}'), new State("EndLexeme"));
 */

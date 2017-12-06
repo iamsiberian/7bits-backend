@@ -53,7 +53,7 @@ public class FileWriter implements IWriter, IClosable, IStringWriter {
         try {
             writer.write(s);
         } catch (Exception e) {
-            throw new  WriterException("erroe in write(String s);", e);
+            throw new  WriterException("error in write(String s);", e);
         }
     }
 }

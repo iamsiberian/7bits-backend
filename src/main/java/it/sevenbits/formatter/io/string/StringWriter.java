@@ -1,7 +1,11 @@
 package it.sevenbits.formatter.io.string;
 
 import it.sevenbits.formatter.io.exceptions.WriterException;
+import it.sevenbits.formatter.io.interfaces.IStringWriter;
 import it.sevenbits.formatter.io.interfaces.IWriter;
+import it.sevenbits.formatter.token.IToken;
+
+import java.util.ArrayList;
 
 /**
  * Class for writing char to string
@@ -32,4 +36,5 @@ public class StringWriter implements IWriter {
     public String toString() {
         return stringBuilder.toString();
     }
+
 }

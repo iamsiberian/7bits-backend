@@ -36,6 +36,6 @@ public class State {
 
     @Override
     public String toString() {
-        return super.toString();
+        return name.toString();
     }
 }
