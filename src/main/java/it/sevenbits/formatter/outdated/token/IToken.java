@@ -1,7 +1,7 @@
-package it.sevenbits.formatter.token;
+package it.sevenbits.formatter.outdated.token;
 
 /**
- * Interface to get the name of the token and lexeme
+ * Interface for receiving information about the token
  *
  * @author Minyukhin Ilya
  */
@@ -14,7 +14,7 @@ public interface IToken {
     String getName();
 
     /**
-     * Returns a lexeme
+     * Returns the lexeme
      *
      * @return String lexeme
      */

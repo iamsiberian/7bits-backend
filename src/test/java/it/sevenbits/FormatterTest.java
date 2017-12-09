@@ -1,6 +1,6 @@
 package it.sevenbits;
 
-import it.sevenbits.formatter.formatter.Formatter;
+import it.sevenbits.formatter.outdated.formatter.Formatter;
 import it.sevenbits.formatter.io.exceptions.ReaderException;
 import it.sevenbits.formatter.io.exceptions.WriterException;
 import it.sevenbits.formatter.io.string.StringReader;

@@ -24,11 +24,9 @@ public class StringReader implements IReader {
     @Override
     public char readNext() throws ReaderException {
         try {
-            return stroke.charAt(count);
+            return stroke.charAt(count++);
         } catch (Exception e) {
-            throw  new ReaderException("Char at " + count + " can't read", e);
-        } finally {
-            count++;
+            throw new ReaderException("Char at " + count + " can't read", e);
         }
     }
 

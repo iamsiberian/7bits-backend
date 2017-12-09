@@ -13,7 +13,7 @@ import java.io.Writer;
  *
  * @author Minyukhin Ilya
  */
-public class FileWriter implements IWriter, IClosable, IStringWriter {
+public class FileWriter implements IWriter, IClosable {
 
     private Writer writer;
 
@@ -49,7 +49,7 @@ public class FileWriter implements IWriter, IClosable, IStringWriter {
     }
 
     @Override
-    public void write(String s) throws WriterException {
+    public void write(final String s) throws WriterException {
         try {
             writer.write(s);
         } catch (Exception e) {

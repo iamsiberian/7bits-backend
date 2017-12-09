@@ -1,11 +1,7 @@
 package it.sevenbits.formatter.io.string;
 
 import it.sevenbits.formatter.io.exceptions.WriterException;
-import it.sevenbits.formatter.io.interfaces.IStringWriter;
 import it.sevenbits.formatter.io.interfaces.IWriter;
-import it.sevenbits.formatter.token.IToken;
-
-import java.util.ArrayList;
 
 /**
  * Class for writing char to string
@@ -15,18 +11,23 @@ import java.util.ArrayList;
 
 public class StringWriter implements IWriter {
 
-    private StringBuilder stringBuilder;
+    private StringBuilder content;
 
     /**
      * the constructor initializes the stringBuffer
      */
     public StringWriter() {
-        stringBuilder = new StringBuilder("");
+        content = new StringBuilder("");
     }
 
     @Override
     public void write(final char c) throws WriterException {
-        stringBuilder.append(c);
+        content.append(c);
+    }
+
+    @Override
+    public void write(final String s) throws WriterException {
+        content.append(s);
     }
 
     /**
@@ -34,7 +35,7 @@ public class StringWriter implements IWriter {
      * @return the value of a stringBuffer converted to a string
      */
     public String toString() {
-        return stringBuilder.toString();
+        return content.toString();
     }
 
 }
