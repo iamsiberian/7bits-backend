@@ -1,4 +1,4 @@
-package it.sevenbits;
+package it.sevenbits.formatter.outdated;
 
 import it.sevenbits.formatter.outdated.formatter.Formatter;
 import it.sevenbits.formatter.io.exceptions.ReaderException;

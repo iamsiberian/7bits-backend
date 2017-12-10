@@ -14,4 +14,28 @@ public interface IContext {
      * @throws ContextException if an error occurred
      */
     void writeLexeme(String lexeme) throws ContextException;
+
+    /**
+     * Method write indent
+     *
+     * @throws ContextException if an error occurred
+     */
+    void writeIndent() throws ContextException;
+
+    /**
+     * Method increases the level
+     */
+    void increaseCountLevel();
+
+    /**
+     * Method decreases the level
+     */
+    void decreaseCountLevel();
+
+    /**
+     * Method write new line
+     *
+     * @throws ContextException if an error occurred
+     */
+    void writeNewLine() throws ContextException;
 }

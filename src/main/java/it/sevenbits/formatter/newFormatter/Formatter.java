@@ -26,7 +26,7 @@ public class Formatter implements IFormatter {
     @Override
     public void format(final ILexer lexer, final IWriter writer) throws ReaderException, ContextException {
         IContext context = new Context(writer);
-        State state = new State("default");
+        State state = new State("start");
         while (lexer.hasNextToken() && state != null) {
             IToken token = lexer.readToken();
             ICommand command = commands.getCommand(state, token);
@@ -34,6 +34,11 @@ public class Formatter implements IFormatter {
             state = transitions.getNextState(state, token);
         }
     }
+
+    /*
+    String testStroke = "   aaa {\nbbbb\nccc;\n}\n aaa {\n}";
+    String trueStroke = "aaa {\n    bbbbccc;\n    }\naaa {\n    }";
+     */
 
 
 }

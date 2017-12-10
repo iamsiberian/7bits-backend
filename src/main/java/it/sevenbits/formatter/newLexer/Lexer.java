@@ -39,7 +39,7 @@ public class Lexer implements ILexer, IContext {
      * @param commands class that implements ICommandRepository interface
      * @param transitions class that implements IStateTransitions interface
      */
-    private Lexer(final IReader reader, final ICommandRepository commands, final IStateTransitions transitions) {
+    public Lexer(final IReader reader, final ICommandRepository commands, final IStateTransitions transitions) {
         this.reader = reader;
         this.commands = commands;
         this.transitions = transitions;
@@ -73,7 +73,7 @@ public class Lexer implements ILexer, IContext {
         try {
             char c = iReader.readNext();
             ICommand command = commands.getCommand(state, c);
-            command.execute(c, this);
+            command.execute(c, context);
             return transitions.nextState(state, c);
         } catch (ReaderException e) {
             throw new ReaderException("ReaderException in Lexer.step(State state, IReader iReader)", e);

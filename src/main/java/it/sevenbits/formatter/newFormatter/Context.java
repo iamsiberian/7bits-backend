@@ -10,6 +10,9 @@ import it.sevenbits.formatter.io.interfaces.IWriter;
  */
 public class Context implements IContext {
 
+    private static final int indent = 4;
+    private int countLevel = 0;
+
     private final IWriter writer;
 
     /**
@@ -27,6 +30,36 @@ public class Context implements IContext {
             writer.write(lexeme);
         } catch (WriterException e) {
             throw new ContextException("error in Context.writeLexeme(final String lexeme)", e);
+        }
+    }
+
+    @Override
+    public void writeIndent() throws ContextException {
+        try {
+            for (int i = 0; i < countLevel * indent; i++) {
+                writer.write(' ');
+            }
+        } catch (WriterException e) {
+            throw new ContextException("error in Context.writeIndent()", e);
+        }
+    }
+
+    @Override
+    public void increaseCountLevel() {
+        countLevel++;
+    }
+
+    @Override
+    public void decreaseCountLevel() {
+        countLevel--;
+    }
+
+    @Override
+    public void writeNewLine() throws ContextException {
+        try {
+            writer.write('\n');
+        } catch (WriterException e) {
+            throw new ContextException("error in Context.writeNewLine()", e);
         }
     }
 
