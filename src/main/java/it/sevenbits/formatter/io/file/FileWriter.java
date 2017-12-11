@@ -1,10 +1,9 @@
 package it.sevenbits.formatter.io.file;
 
-import it.sevenbits.formatter.io.exceptions.CloseableException;
-import it.sevenbits.formatter.io.exceptions.WriterException;
-import it.sevenbits.formatter.io.interfaces.IClosable;
-import it.sevenbits.formatter.io.interfaces.IStringWriter;
-import it.sevenbits.formatter.io.interfaces.IWriter;
+import it.sevenbits.formatter.io.CloseableException;
+import it.sevenbits.formatter.io.WriterException;
+import it.sevenbits.formatter.io.IClosable;
+import it.sevenbits.formatter.io.IWriter;
 
 import java.io.Writer;
 

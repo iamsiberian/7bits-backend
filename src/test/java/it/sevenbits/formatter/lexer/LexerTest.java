@@ -1,12 +1,12 @@
 package it.sevenbits.formatter.lexer;
 
-import it.sevenbits.formatter.State;
-import it.sevenbits.formatter.io.exceptions.ReaderException;
-import it.sevenbits.formatter.io.interfaces.IReader;
+import it.sevenbits.formatter.statemachine.State;
+import it.sevenbits.formatter.io.ReaderException;
+import it.sevenbits.formatter.io.IReader;
 import it.sevenbits.formatter.io.string.StringReader;
-import it.sevenbits.formatter.newLexer.*;
 
-import it.sevenbits.formatter.token.IToken;
+import it.sevenbits.formatter.statemachine.lexer.*;
+import it.sevenbits.formatter.statemachine.token.IToken;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

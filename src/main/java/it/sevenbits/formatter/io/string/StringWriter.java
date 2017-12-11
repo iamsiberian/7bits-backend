@@ -1,7 +1,7 @@
 package it.sevenbits.formatter.io.string;
 
-import it.sevenbits.formatter.io.exceptions.WriterException;
-import it.sevenbits.formatter.io.interfaces.IWriter;
+import it.sevenbits.formatter.io.WriterException;
+import it.sevenbits.formatter.io.IWriter;
 
 /**
  * Class for writing char to string

@@ -1,13 +1,13 @@
 package it.sevenbits.formatter.formatter;
 
-import it.sevenbits.formatter.io.exceptions.ReaderException;
-import it.sevenbits.formatter.io.interfaces.IReader;
-import it.sevenbits.formatter.io.interfaces.IWriter;
+import it.sevenbits.formatter.io.ReaderException;
+import it.sevenbits.formatter.io.IReader;
+import it.sevenbits.formatter.io.IWriter;
 import it.sevenbits.formatter.io.string.StringReader;
 import it.sevenbits.formatter.io.string.StringWriter;
-import it.sevenbits.formatter.newFormatter.ContextException;
-import it.sevenbits.formatter.newFormatter.Formatter;
-import it.sevenbits.formatter.newLexer.Lexer;
+import it.sevenbits.formatter.statemachine.formatter.ContextException;
+import it.sevenbits.formatter.statemachine.formatter.Formatter;
+import it.sevenbits.formatter.statemachine.lexer.Lexer;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

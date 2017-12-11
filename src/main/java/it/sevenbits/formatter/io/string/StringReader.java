@@ -1,7 +1,7 @@
 package it.sevenbits.formatter.io.string;
 
-import it.sevenbits.formatter.io.exceptions.ReaderException;
-import it.sevenbits.formatter.io.interfaces.IReader;
+import it.sevenbits.formatter.io.ReaderException;
+import it.sevenbits.formatter.io.IReader;
 
 /**
  * Class for reading char from string

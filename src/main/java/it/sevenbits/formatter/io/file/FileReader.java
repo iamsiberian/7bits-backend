@@ -1,9 +1,9 @@
 package it.sevenbits.formatter.io.file;
 
-import it.sevenbits.formatter.io.exceptions.CloseableException;
-import it.sevenbits.formatter.io.exceptions.ReaderException;
-import it.sevenbits.formatter.io.interfaces.IClosable;
-import it.sevenbits.formatter.io.interfaces.IReader;
+import it.sevenbits.formatter.io.CloseableException;
+import it.sevenbits.formatter.io.ReaderException;
+import it.sevenbits.formatter.io.IClosable;
+import it.sevenbits.formatter.io.IReader;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -18,7 +18,6 @@ public class FileReader implements IClosable, IReader {
 
     private Reader reader;
     private int byteSymbol;
-    //private int prevByteSymbol;
 
     /**
      * the constructor initializes instance of a class java.io.FileReader
