@@ -24,8 +24,8 @@ public class App {
         final int argsLenghtForFile = 2;
         if (args.length == argsLenghtForFile) {
             try (
-                    FileReader fileReader = new FileReader(args[1]);
-                    FileWriter fileWriter = new FileWriter(args[2])
+                    FileReader fileReader = new FileReader(args[0]);
+                    FileWriter fileWriter = new FileWriter(args[1])
             ) {
                 Lexer lexer = new Lexer(fileReader);
                 Formatter formatter = new Formatter();
@@ -34,9 +34,8 @@ public class App {
                 throw new AppException("error in main()", e);
             }
         } else {
-            /* Дописать вывод ошибки в консоль и вывод кода ошибки
-            System.err.println("Usage");
-*/
+            System.err.println("Usage: java -jar *.jar input.file output.file");
+            System.exit(1);
         }
     }
 }

@@ -16,8 +16,10 @@ public class Context implements IContext {
      *
      *
      */
-    public Context() {
-
+    Context() {
+        tokenName = "";
+        tokenLexeme = new StringBuilder();
+        postponeBuffer = new StringBuilder();
     }
 
     @Override
@@ -34,4 +36,30 @@ public class Context implements IContext {
     public void appendPostpone(final char c) {
         postponeBuffer.append(c);
     }
+
+    @Override
+    public void newLexeme() {
+        tokenLexeme = new StringBuilder();
+    }
+
+    @Override
+    public StringBuilder getPostponeBuffer() {
+        return postponeBuffer;
+    }
+
+    @Override
+    public void setPostponeBufferZeroLength() {
+        postponeBuffer.setLength(0);
+    }
+
+    @Override
+    public StringBuilder getTokenLexeme() {
+        return tokenLexeme;
+    }
+
+    @Override
+    public String getTokenName() {
+        return tokenName;
+    }
+
 }

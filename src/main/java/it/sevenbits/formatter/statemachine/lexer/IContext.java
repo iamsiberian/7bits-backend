@@ -27,4 +27,14 @@ public interface IContext {
      * @param c the character that was read
      */
     void appendPostpone(char c);
+
+    void newLexeme();
+
+    StringBuilder getPostponeBuffer();
+
+    void setPostponeBufferZeroLength();
+
+    StringBuilder getTokenLexeme();
+
+    String getTokenName();
 }

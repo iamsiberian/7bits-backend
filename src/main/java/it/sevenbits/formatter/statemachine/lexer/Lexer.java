@@ -12,23 +12,23 @@ import it.sevenbits.formatter.statemachine.token.Token;
  *
  * @author Minyukhin Ilya
  */
-public class Lexer implements ILexer, IContext {
+public class Lexer implements ILexer/*, IContext*/ {
 
     private final IReader reader;
-    private String tokenName;
-    private StringBuilder tokenLexeme;
+    //private String tokenName;
+    //private StringBuilder tokenLexeme;
     private ICommandRepository commands;
     private IStateTransitions transitions;
-    private StringBuilder postponeBuffer = new StringBuilder();
+    //private StringBuilder postponeBuffer = new StringBuilder();
+    private IContext context = new Context();
 
     /**
      * The basic constructor that calls the private constructor
      * and passes into it the argument class that implements iReader interface
      *
      * @param reader class that implements iReader interface
-     * @throws ReaderException if an error occurred
      */
-    public Lexer(final IReader reader) throws ReaderException {
+    public Lexer(final IReader reader) {
         this(reader, new CommandRepository(), new StateTransitions());
     }
 
@@ -47,26 +47,28 @@ public class Lexer implements ILexer, IContext {
 
     @Override
     public IToken readToken() throws ReaderException {
-        tokenLexeme = new StringBuilder();
+        /*
+        tokenLexeme = new StringBuilder();*/
+        context.newLexeme();
 
         State state = new State("default");
 
-        IReader postponeReader = new StringReader(postponeBuffer.toString());
+        IReader postponeReader = new StringReader(context.getPostponeBuffer().toString());
         while (postponeReader.hasNext() && state != null) {
-            state = step(postponeReader , state, this);
+            state = step(postponeReader , state, context);
         }
-        postponeBuffer.setLength(0);
+        context.setPostponeBufferZeroLength();
 
         while (reader.hasNext() && state != null) {
-            state = step(reader, state, this);
+            state = step(reader, state, context);
         }
 
-        return new Token(tokenName, tokenLexeme.toString());
+        return new Token(context.getTokenName(), context.getTokenLexeme().toString());
     }
 
     @Override
     public boolean hasNextToken() throws ReaderException {
-        return postponeBuffer.length() > 0 || reader.hasNext();
+        return context.getPostponeBuffer().length() > 0 || reader.hasNext();
     }
 
     private State step(final IReader iReader, final State state, final IContext context) throws ReaderException {
@@ -75,7 +77,7 @@ public class Lexer implements ILexer, IContext {
         command.execute(c, context);
         return transitions.nextState(state, c);
     }
-
+/*
     @Override
     public void appendLexeme(final char c) {
         tokenLexeme.append(c);
@@ -89,5 +91,5 @@ public class Lexer implements ILexer, IContext {
     @Override
     public void appendPostpone(final char c) {
         postponeBuffer.append(c);
-    }
+    }*/
 }
