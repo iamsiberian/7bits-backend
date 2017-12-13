@@ -19,8 +19,7 @@ public class StateTransitions implements IStateTransitions {
     /**
      * The basic constructor that initializes the states map
      */
-    public StateTransitions() {
-        //transitions.put(new Pair<>(new State("start"), null), new State("default"));
+    StateTransitions() {
         transitions.put(new Pair<>(new State("start"), "space"), new State("start"));
         transitions.put(new Pair<>(new State("start"), "spaces"), new State("start"));
         transitions.put(new Pair<>(new State("start"), "openmultilinecomment"), new State("writemulticomment"));

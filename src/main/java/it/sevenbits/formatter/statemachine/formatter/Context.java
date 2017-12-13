@@ -10,7 +10,7 @@ import it.sevenbits.formatter.io.IWriter;
  */
 public class Context implements IContext {
 
-    private static final int indent = 4;
+    private static final int INDENT = 4;
     private int countLevel = 0;
 
     private final IWriter writer;
@@ -36,7 +36,7 @@ public class Context implements IContext {
     @Override
     public void writeIndent() throws ContextException {
         try {
-            for (int i = 0; i < countLevel * indent; i++) {
+            for (int i = 0; i < countLevel * INDENT; i++) {
                 writer.write(' ');
             }
         } catch (WriterException e) {

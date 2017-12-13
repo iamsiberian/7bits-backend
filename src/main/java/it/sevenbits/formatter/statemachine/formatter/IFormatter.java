@@ -17,6 +17,7 @@ public interface IFormatter {
      * @param lexer an instance of the lexer class
      * @param writer an instance of a class that implements an IWriter interface
      * @throws ReaderException if an error occurred
+     * @throws ContextException if an error occurred
      */
     void format(ILexer lexer, IWriter writer) throws ReaderException, ContextException;
 }

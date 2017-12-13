@@ -34,11 +34,4 @@ public class Formatter implements IFormatter {
             state = transitions.getNextState(state, token);
         }
     }
-
-    /*
-    String testStroke = "   aaa {\nbbbb\nccc;\n}\n aaa {\n}";
-    String trueStroke = "aaa {\n    bbbbccc;\n    }\naaa {\n    }";
-     */
-
-
 }

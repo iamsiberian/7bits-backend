@@ -12,14 +12,11 @@ import it.sevenbits.formatter.statemachine.token.Token;
  *
  * @author Minyukhin Ilya
  */
-public class Lexer implements ILexer/*, IContext*/ {
+public class Lexer implements ILexer {
 
     private final IReader reader;
-    //private String tokenName;
-    //private StringBuilder tokenLexeme;
     private ICommandRepository commands;
     private IStateTransitions transitions;
-    //private StringBuilder postponeBuffer = new StringBuilder();
     private IContext context = new Context();
 
     /**
@@ -47,8 +44,7 @@ public class Lexer implements ILexer/*, IContext*/ {
 
     @Override
     public IToken readToken() throws ReaderException {
-        /*
-        tokenLexeme = new StringBuilder();*/
+
         context.newLexeme();
 
         State state = new State("default");
@@ -71,25 +67,10 @@ public class Lexer implements ILexer/*, IContext*/ {
         return context.getPostponeBuffer().length() > 0 || reader.hasNext();
     }
 
-    private State step(final IReader iReader, final State state, final IContext context) throws ReaderException {
+    private State step(final IReader iReader, final State state, final IContext icontext) throws ReaderException {
         char c = iReader.readNext();
         ICommand command = commands.getCommand(state, c);
-        command.execute(c, context);
+        command.execute(c, icontext);
         return transitions.nextState(state, c);
     }
-/*
-    @Override
-    public void appendLexeme(final char c) {
-        tokenLexeme.append(c);
-    }
-
-    @Override
-    public void setTokenName(final String name) {
-        tokenName = name;
-    }
-
-    @Override
-    public void appendPostpone(final char c) {
-        postponeBuffer.append(c);
-    }*/
 }

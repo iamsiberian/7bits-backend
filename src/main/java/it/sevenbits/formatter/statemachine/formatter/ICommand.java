@@ -14,6 +14,7 @@ public interface ICommand {
      *
      * @param token the token that was read
      * @param context an instance of a class that implements an IContext interface
+     * @throws ContextException if an error occurred
      */
     void execute(IToken token, IContext context) throws ContextException;
 }

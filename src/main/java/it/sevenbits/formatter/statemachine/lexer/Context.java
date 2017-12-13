@@ -13,8 +13,6 @@ public class Context implements IContext {
 
     /**
      * The basic constructor that initializes the instance of a class
-     *
-     *
      */
     Context() {
         tokenName = "";

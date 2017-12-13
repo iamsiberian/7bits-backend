@@ -31,7 +31,7 @@ public class ContextException extends Exception {
      * @param message exception text
      * @param cause exception object
      */
-    public ContextException(final String message, final Throwable cause) {
+    ContextException(final String message, final Throwable cause) {
         super(message, cause);
     }
 }

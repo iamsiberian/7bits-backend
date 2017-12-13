@@ -20,52 +20,67 @@ public class CommandRepository implements ICommandRepository {
      * The basic constructor that initializes the command map
      */
     CommandRepository() {
-        commands.put(new Pair<>(new State("start"), "space"), (token, context) ->                               {  });
-        commands.put(new Pair<>(new State("start"), "spaces"), (token, context) ->                              {  });
-        commands.put(new Pair<>(new State("start"), "newline"), (token, context) ->                             {  });
-        commands.put(new Pair<>(new State("start"), "onelinecomment"), (token, context) ->                      context.writeLexeme(token.getLexeme()));
-        commands.put(new Pair<>(new State("writeonelinecomment"), null), (token, context) ->                    context.writeLexeme(token.getLexeme()));
-        commands.put(new Pair<>(new State("writeonelinecomment"), "newline"), (token, context) ->               {context.writeNewLine();
-                                                                                                                context.writeIndent();});
-        commands.put(new Pair<>(new State("start"), "openmultilinecomment"), (token, context) ->                context.writeLexeme(token.getLexeme()));
-        commands.put(new Pair<>(new State("start"), "closemultilinecomment"), (token, context) ->               {});
-        commands.put(new Pair<>(new State("start"), "char"), (token, context) ->                                context.writeLexeme(token.getLexeme()));
-        commands.put(new Pair<>(new State("start"), "newline"), (token, context) ->                             {/*context.writeNewLine();
-                                                                                                                context.writeIndent();*/});
-
-        commands.put(new Pair<>(new State("default"), "char"), (token, context) ->                              context.writeLexeme(token.getLexeme()));
-        commands.put(new Pair<>(new State("default"), "space"), (token, context) ->                             context.writeLexeme(token.getLexeme()));
-        commands.put(new Pair<>(new State("default"), "spaces"), (token, context) ->                            context.writeLexeme(token.getLexeme()));
-        commands.put(new Pair<>(new State("default"), "semicolon"), (token, context) ->                         {context.writeLexeme(token.getLexeme());
-                                                                                                                context.writeNewLine();
-                                                                                                                context.writeIndent();});
-        commands.put(new Pair<>(new State("default"), "openmultilinecomment"), (token, context) ->              context.writeLexeme(token.getLexeme()));
-        commands.put(new Pair<>(new State("default"), "newline"), (token, context) ->                           {});
-
-        commands.put(new Pair<>(new State("writemulticomment"), "closemultilinecomment"), (token, context) ->   {context.writeLexeme(token.getLexeme());
-                                                                                                                context.writeNewLine();
-                                                                                                                context.writeIndent();});
-        commands.put(new Pair<>(new State("writemulticomment"), null), (token, context) ->                      context.writeLexeme(token.getLexeme()));
+        commands.put(new Pair<>(new State("start"), "space"), (token, context) -> {
+                });
+        commands.put(new Pair<>(new State("start"), "spaces"), (token, context) -> {
+                });
+        commands.put(new Pair<>(new State("start"), "newline"), (token, context) -> {
+                });
+        commands.put(new Pair<>(new State("start"), "onelinecomment"), (token, context) ->
+                context.writeLexeme(token.getLexeme()));
+        commands.put(new Pair<>(new State("writeonelinecomment"), null), (token, context) ->
+                context.writeLexeme(token.getLexeme()));
+        commands.put(new Pair<>(new State("writeonelinecomment"), "newline"), (token, context) -> {
+                context.writeNewLine();
+                context.writeIndent(); });
+        commands.put(new Pair<>(new State("start"), "openmultilinecomment"), (token, context) ->
+                context.writeLexeme(token.getLexeme()));
+        commands.put(new Pair<>(new State("start"), "closemultilinecomment"), (token, context) -> {
+                });
+        commands.put(new Pair<>(new State("start"), "char"), (token, context) ->
+                context.writeLexeme(token.getLexeme()));
+        commands.put(new Pair<>(new State("start"), "newline"), (token, context) -> {
+                });
+        commands.put(new Pair<>(new State("default"), "char"), (token, context) ->
+                context.writeLexeme(token.getLexeme()));
+        commands.put(new Pair<>(new State("default"), "space"), (token, context) ->
+                context.writeLexeme(token.getLexeme()));
+        commands.put(new Pair<>(new State("default"), "spaces"), (token, context) ->
+                context.writeLexeme(token.getLexeme()));
+        commands.put(new Pair<>(new State("default"), "semicolon"), (token, context) -> {
+                context.writeLexeme(token.getLexeme());
+                context.writeNewLine();
+                context.writeIndent(); });
+        commands.put(new Pair<>(new State("default"), "openmultilinecomment"), (token, context) ->
+                context.writeLexeme(token.getLexeme()));
+        commands.put(new Pair<>(new State("default"), "newline"), (token, context) -> {
+                });
+        commands.put(new Pair<>(new State("writemulticomment"), "closemultilinecomment"), (token, context) -> {
+                context.writeLexeme(token.getLexeme());
+                context.writeNewLine();
+                context.writeIndent(); });
+        commands.put(new Pair<>(new State("writemulticomment"), null), (token, context) ->
+                context.writeLexeme(token.getLexeme()));
         commands.put(new Pair<>(new State("default"), "openbracket"), (token, context) -> {
-            context.writeLexeme(token.getLexeme());
-            context.increaseCountLevel();
-            context.writeNewLine();
-            context.writeIndent();});
+                context.writeLexeme(token.getLexeme());
+                context.increaseCountLevel();
+                context.writeNewLine();
+                context.writeIndent(); });
         commands.put(new Pair<>(new State("default"), "closebracket"), (token, context) -> {
-            context.writeLexeme(token.getLexeme());
-            context.decreaseCountLevel();
-            context.writeNewLine();
-            context.writeIndent();});
+                context.writeLexeme(token.getLexeme());
+                context.decreaseCountLevel();
+                context.writeNewLine();
+                context.writeIndent(); });
         commands.put(new Pair<>(new State("start"), "openbracket"), (token, context) -> {
-            context.writeLexeme(token.getLexeme());
-            context.increaseCountLevel();
-            context.writeNewLine();
-            context.writeIndent();});
+                context.writeLexeme(token.getLexeme());
+                context.increaseCountLevel();
+                context.writeNewLine();
+                context.writeIndent(); });
         commands.put(new Pair<>(new State("start"), "closebracket"), (token, context) -> {
-            context.writeLexeme(token.getLexeme());
-            context.decreaseCountLevel();
-            context.writeNewLine();
-            context.writeIndent();});
+                context.writeLexeme(token.getLexeme());
+                context.decreaseCountLevel();
+                context.writeNewLine();
+                context.writeIndent(); });
 
     }
 

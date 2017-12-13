@@ -18,58 +18,42 @@ public class CommandRepository implements ICommandRepository {
      * The basic constructor that initializes the command map
      */
     CommandRepository() {
-        commands.put(new Pair<>(new State("default"), null),
-                (c, context) -> {
+        commands.put(new Pair<>(new State("default"), null), (c, context) -> {
                     context.appendLexeme(c); context.setTokenName("char"); });
-        commands.put(new Pair<>(new State("default"), ';'),
-                (c, context) -> {
+        commands.put(new Pair<>(new State("default"), ';'), (c, context) -> {
                     context.appendLexeme(c); context.setTokenName("semicolon"); });
-        commands.put(new Pair<>(new State("default"), '\n'),
-                (c, context) -> {
+        commands.put(new Pair<>(new State("default"), '\n'), (c, context) -> {
                     context.appendLexeme(c); context.setTokenName("newline"); });
 
-        commands.put(new Pair<>(new State("default"), '{'),
-                (c, context) -> {
+        commands.put(new Pair<>(new State("default"), '{'), (c, context) -> {
                     context.appendLexeme(c); context.setTokenName("openbracket"); });
-        commands.put(new Pair<>(new State("default"), '}'),
-                (c, context) -> {
+        commands.put(new Pair<>(new State("default"), '}'), (c, context) -> {
                     context.appendLexeme(c); context.setTokenName("closebracket"); });
 
-        commands.put(new Pair<>(new State("default"), ' '),
-                (c, context) -> {
+        commands.put(new Pair<>(new State("default"), ' '), (c, context) -> {
                     context.appendLexeme(c); context.setTokenName("space"); });
-        commands.put(new Pair<>(new State("spacing"), ' '),
-                (c, context) -> {
+        commands.put(new Pair<>(new State("spacing"), ' '), (c, context) -> {
                     context.appendLexeme(c); context.setTokenName("spaces"); });
-        commands.put(new Pair<>(new State("spacing"), null),
-                (c, context) -> {
-                    context.appendPostpone(c); });
+        commands.put(new Pair<>(new State("spacing"), null), (c, context) ->
+                    context.appendPostpone(c));
 
-        commands.put(new Pair<>(new State("default"), '/'),
-                (c, context) -> {
-                    context.appendLexeme(c); });
-        commands.put(new Pair<>(new State("slash"), '/'),
-                (c, context) -> {
+        commands.put(new Pair<>(new State("default"), '/'), (c, context) ->
+                    context.appendLexeme(c));
+        commands.put(new Pair<>(new State("slash"), '/'), (c, context) -> {
                     context.appendLexeme(c); context.setTokenName("onelinecomment"); });
-        commands.put(new Pair<>(new State("onelinecomment"), null),
-                (c, context) -> {
-                    context.appendPostpone(c); });
+        commands.put(new Pair<>(new State("onelinecomment"), null), (c, context) ->
+                    context.appendPostpone(c));
 
-        commands.put(new Pair<>(new State("slash"), '*'),
-                (c, context) -> {
+        commands.put(new Pair<>(new State("slash"), '*'), (c, context) -> {
                     context.appendLexeme(c); context.setTokenName("openmultilinecomment"); });
-        commands.put(new Pair<>(new State("openmultilinecomment"), null),
-                (c, context) -> {
-                    context.appendPostpone(c); });
-        commands.put(new Pair<>(new State("default"), '*'),
-                (c, context) -> {
-                    context.appendLexeme(c); });
-        commands.put(new Pair<>(new State("star"), '/'),
-                (c, context) -> {
+        commands.put(new Pair<>(new State("openmultilinecomment"), null), (c, context) ->
+                    context.appendPostpone(c));
+        commands.put(new Pair<>(new State("default"), '*'), (c, context) ->
+                    context.appendLexeme(c));
+        commands.put(new Pair<>(new State("star"), '/'), (c, context) -> {
                     context.appendLexeme(c); context.setTokenName("closemultilinecomment"); });
-        commands.put(new Pair<>(new State("closemultilinecomment"), null),
-                (c, context) -> {
-                    context.appendPostpone(c); });
+        commands.put(new Pair<>(new State("closemultilinecomment"), null), (c, context) ->
+                    context.appendPostpone(c));
     }
 
     @Override

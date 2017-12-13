@@ -6,8 +6,8 @@ package it.sevenbits.formatter.statemachine.token;
  * @author Minyukhin Ilya
  */
 public class Token implements IToken {
-    private String tokenName = "";
-    private String lexeme = "";
+    private String tokenName;
+    private String lexeme;
 
     /**
      * A basic constructor initializing the fields of an instance of the class
