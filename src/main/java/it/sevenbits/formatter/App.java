@@ -3,6 +3,7 @@ package it.sevenbits.formatter;
 import it.sevenbits.formatter.io.file.FileReader;
 import it.sevenbits.formatter.io.file.FileWriter;
 import it.sevenbits.formatter.statemachine.formatter.Formatter;
+import it.sevenbits.formatter.statemachine.lexer.ConfigExec;
 import it.sevenbits.formatter.statemachine.lexer.Lexer;
 
 /**
@@ -21,6 +22,8 @@ public class App {
      * @throws AppException if an error occurred
      */
     public static void main(final String[] args) throws AppException {
+        ConfigExec configExec = new ConfigExec();
+
         final int argsLenghtForFile = 2;
         if (args.length == argsLenghtForFile) {
             try (

@@ -11,13 +11,14 @@ import java.util.Map;
  *
  * @author Minyukhin Ilya
  */
-public class CommandRepository implements ICommandRepository {
-    private final Map<Pair<State, Character>, ICommand> commands = new HashMap<>();
+public class CommandRepository implements ICommandRepository, IPut<ICommand> {
+    private/* final */ Map<Pair<State, Character>, ICommand> commands/* = new HashMap<>()*/;
 
     /**
      * The basic constructor that initializes the command map
      */
     CommandRepository() {
+        /*
         commands.put(new Pair<>(new State("default"), null), (c, context) -> {
                     context.appendLexeme(c); context.setTokenName("char"); });
         commands.put(new Pair<>(new State("default"), ';'), (c, context) -> {
@@ -54,6 +55,9 @@ public class CommandRepository implements ICommandRepository {
                     context.appendLexeme(c); context.setTokenName("closemultilinecomment"); });
         commands.put(new Pair<>(new State("closemultilinecomment"), null), (c, context) ->
                     context.appendPostpone(c));
+                    */
+
+        commands = new HashMap<>();
     }
 
     @Override
@@ -63,5 +67,10 @@ public class CommandRepository implements ICommandRepository {
             command = commands.get(new Pair<>(state, (Character) null));
         }
         return command;
+    }
+
+    @Override
+    public void put(State state, Character character, ICommand command) {
+        commands.put(new Pair<>(state, character), command);
     }
 }

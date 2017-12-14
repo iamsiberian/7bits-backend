@@ -81,4 +81,21 @@ public class FormatterTest {
         assertEquals(trueStroke, resultStroke);
     }
 
+    @Test
+    public void testFormatter2() throws ReaderException, ContextException {
+        String testStroke = "   a";
+        String trueStroke = "a";
+
+        IReader stringReader = new StringReader(testStroke);
+        IWriter stringWriter = new StringWriter();
+
+        Lexer lexer = new Lexer(stringReader);
+        Formatter formatter = new Formatter();
+        formatter.format(lexer, stringWriter);
+
+        String resultStroke = stringWriter.toString();
+
+        assertEquals(trueStroke, resultStroke);
+    }
+
 }
