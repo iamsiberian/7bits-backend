@@ -16,13 +16,38 @@ import static org.mockito.Mockito.*;
 
 public class LexerTest {
     @Test
+    public void testAnotherSimpleTokenize() throws ReaderException {
+        ConfigExec configExec = new ConfigExec();
+        IReader reader = new StringReader(
+                "  a  ");
+
+        ILexer lexer = new Lexer(reader, configExec);
+
+        assertTrue(lexer.hasNextToken());
+        IToken token = lexer.readToken();
+        assertEquals("spaces", token.getName());
+        assertEquals("  ", token.getLexeme());
+
+        assertTrue(lexer.hasNextToken());
+        token = lexer.readToken();
+        assertEquals("char", token.getName());
+        assertEquals("a", token.getLexeme());
+
+        assertTrue(lexer.hasNextToken());
+        token = lexer.readToken();
+        assertEquals("space", token.getName());
+        assertEquals(" ", token.getLexeme());
+    }
+
+    @Test
     public void testSimpleTokenize() throws ReaderException {
+        ConfigExec configExec = new ConfigExec();
         IReader reader = new StringReader(
                 "  a {\n" +
                 "   b; //c\n" +
                 "}");
 
-        ILexer lexer = new Lexer(reader);
+        ILexer lexer = new Lexer(reader, configExec);
 
         assertTrue(lexer.hasNextToken());
         IToken token = lexer.readToken();
@@ -116,8 +141,9 @@ public class LexerTest {
 
     @Test
     public void testMultiComment() throws ReaderException{
+        ConfigExec configExec = new ConfigExec();
         IReader reader = new StringReader("/*asd; asd\n {}*/");
-        ILexer lexer = new Lexer(reader);
+        ILexer lexer = new Lexer(reader, configExec);
 
         assertTrue(lexer.hasNextToken());
         IToken token = lexer.readToken();

@@ -16,8 +16,8 @@ public class ConfigExec implements ICreateCommand {
 
     //private static final String COMMAND_PACKAGE = "it.sevenbits.formatter.statemachine.lexer.commands";
 
-    private static CommandRepository commands;
-    private static StateTransitions transitions;
+    private CommandRepository commands;
+    private StateTransitions transitions;
 
     /**
      *
@@ -25,9 +25,8 @@ public class ConfigExec implements ICreateCommand {
     public ConfigExec() {
         commands = new CommandRepository();
         transitions = new StateTransitions();
-    }
-    static {
-        InputStream file = Lexer.class.getResourceAsStream("resources/config/statemachinelexer/lexer.yaml");
+
+        InputStream file = Lexer.class.getResourceAsStream("/config/statemachinelexer/lexer.yaml");
 
         Yaml yaml = new Yaml();
         List statesDefs = (List) yaml.load(file);
@@ -37,14 +36,21 @@ public class ConfigExec implements ICreateCommand {
             List actionsDefs = (List) stateDef.get("actions");
             for (Object actionDefObject : actionsDefs) {
                 Map actionDef = (Map) actionDefObject;
-                Character input = (Character) actionDef.get("input");
-                String command = actionDef.get("command").toString();
-                String state = actionDef.get("state").toString();
 
-                //System.out.println(input + " " + command + " " + state);
+                Object inputObject = actionDef.get("input");
+                Character input;
+                if (inputObject == null) {
+                    input = null;
+                } else {
+                    input = inputObject.toString().charAt(0);
+                }
+
+                String command = actionDef.get("command").toString();
+                String nextstate = actionDef.get("nextstate").toString();
+
                 try {
                     commands.put(new State(stateName), input, createCommand(command));
-                    transitions.put(new State(stateName), input, new State(state));
+                    transitions.put(new State(stateName), input, new State(nextstate));
                 } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
                     e.printStackTrace();
                 }
@@ -56,4 +62,11 @@ public class ConfigExec implements ICreateCommand {
         return (ICommand) Class.forName("it.sevenbits.formatter.statemachine.lexer.commands." + className).newInstance();
     }
 
+    public CommandRepository getRepository() {
+        return commands;
+    }
+
+    public StateTransitions getTransitions() {
+        return transitions;
+    }
 }

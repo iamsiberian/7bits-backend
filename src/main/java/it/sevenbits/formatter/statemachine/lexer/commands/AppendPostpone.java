@@ -9,6 +9,7 @@ import it.sevenbits.formatter.statemachine.lexer.IContext;
  * @author Minyukhin Ilya
  */
 public class AppendPostpone implements ICommand {
+
     @Override
     public void execute(char c, IContext context) {
         context.appendPostpone(c);

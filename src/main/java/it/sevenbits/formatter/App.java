@@ -22,15 +22,14 @@ public class App {
      * @throws AppException if an error occurred
      */
     public static void main(final String[] args) throws AppException {
-        ConfigExec configExec = new ConfigExec();
-
         final int argsLenghtForFile = 2;
         if (args.length == argsLenghtForFile) {
             try (
                     FileReader fileReader = new FileReader(args[0]);
                     FileWriter fileWriter = new FileWriter(args[1])
             ) {
-                Lexer lexer = new Lexer(fileReader);
+                ConfigExec configExec = new ConfigExec();
+                Lexer lexer = new Lexer(fileReader, configExec);
                 Formatter formatter = new Formatter();
                 formatter.format(lexer, fileWriter);
             } catch (Exception e) {

@@ -1,0 +1,58 @@
+- state: 'default'
+  actions:
+    - input: null
+      command: 'Char'
+      nextstate: 'default'
+    - input: ';'
+      command: 'Semicolon'
+      nextstate: 'default'
+    - input: '\n'
+      command: 'Newline'
+      nextstate: 'default'
+    - input: '{'
+      command: 'OpenBracket'
+      nextstate: 'default'
+    - input: '}'
+      command: 'CloseBracket'
+      nextstate: 'default'
+    - input: ' '
+      command: 'Space'
+      nextstate: 'spacing'
+    - input: '/'
+      command: 'AppendLexeme'
+      nextstate: 'slash'
+    - input: '*'
+      command: 'AppendLexeme'
+      nextstate: 'star'
+- state: 'spacing'
+  actions:
+    - input: ' '
+      command: 'Spaces'
+      nextstate: 'spacing'
+    - input: null
+      command: 'AppendPostpone'
+      nextstate: 'default'
+- state: 'slash'
+  actions:
+    - input: '/'
+      command: 'OneLineComment'
+      nextstate: 'default'
+    - input: '*'
+      command: 'OpenMultiLineComment'
+      nextstate: 'default'
+    - input: null
+      command: 'AppendPostpone'
+      nextstate: 'default'
+- state: 'star'
+  actions:
+    - input: '/'
+      command: 'CloseMultiLineComment'
+      nextstate: 'closemultilinecomment'
+    - input: null
+      command: 'AppendPostpone'
+      nextstate: 'default'
+- state: 'closemultilinecomment'
+  actions:
+    - input: null
+      command: 'AppendPostpone'
+      nextstate: 'default'

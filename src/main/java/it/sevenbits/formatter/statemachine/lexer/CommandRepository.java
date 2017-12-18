@@ -73,4 +73,5 @@ public class CommandRepository implements ICommandRepository, IPut<ICommand> {
     public void put(State state, Character character, ICommand command) {
         commands.put(new Pair<>(state, character), command);
     }
+
 }

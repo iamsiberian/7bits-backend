@@ -9,6 +9,7 @@ import it.sevenbits.formatter.statemachine.lexer.IContext;
  * @author Minyukhin Ilya
  */
 public class OneLineComment implements ICommand {
+
     @Override
     public void execute(char c, IContext context) {
         context.appendLexeme(c);

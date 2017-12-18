@@ -7,6 +7,7 @@ import it.sevenbits.formatter.io.string.StringReader;
 import it.sevenbits.formatter.io.string.StringWriter;
 import it.sevenbits.formatter.statemachine.formatter.ContextException;
 import it.sevenbits.formatter.statemachine.formatter.Formatter;
+import it.sevenbits.formatter.statemachine.lexer.ConfigExec;
 import it.sevenbits.formatter.statemachine.lexer.Lexer;
 import org.junit.Test;
 
@@ -21,7 +22,8 @@ public class FormatterTest {
         IReader stringReader = new StringReader(testStroke);
         IWriter stringWriter = new StringWriter();
 
-        Lexer lexer = new Lexer(stringReader);
+        ConfigExec configExec = new ConfigExec();
+        Lexer lexer = new Lexer(stringReader, configExec);
         Formatter formatter = new Formatter();
         formatter.format(lexer, stringWriter);
 
@@ -38,7 +40,8 @@ public class FormatterTest {
         IReader stringReader = new StringReader(testStroke);
         IWriter stringWriter = new StringWriter();
 
-        Lexer lexer = new Lexer(stringReader);
+        ConfigExec configExec = new ConfigExec();
+        Lexer lexer = new Lexer(stringReader, configExec);
         Formatter formatter = new Formatter();
         formatter.format(lexer, stringWriter);
 
@@ -55,7 +58,8 @@ public class FormatterTest {
         IReader stringReader = new StringReader(testStroke);
         IWriter stringWriter = new StringWriter();
 
-        Lexer lexer = new Lexer(stringReader);
+        ConfigExec configExec = new ConfigExec();
+        Lexer lexer = new Lexer(stringReader, configExec);
         Formatter formatter = new Formatter();
         formatter.format(lexer, stringWriter);
 
@@ -72,7 +76,8 @@ public class FormatterTest {
         IReader stringReader = new StringReader(testStroke);
         IWriter stringWriter = new StringWriter();
 
-        Lexer lexer = new Lexer(stringReader);
+        ConfigExec configExec = new ConfigExec();
+        Lexer lexer = new Lexer(stringReader, configExec);
         Formatter formatter = new Formatter();
         formatter.format(lexer, stringWriter);
 
@@ -89,7 +94,8 @@ public class FormatterTest {
         IReader stringReader = new StringReader(testStroke);
         IWriter stringWriter = new StringWriter();
 
-        Lexer lexer = new Lexer(stringReader);
+        ConfigExec configExec = new ConfigExec();
+        Lexer lexer = new Lexer(stringReader, configExec);
         Formatter formatter = new Formatter();
         formatter.format(lexer, stringWriter);
 
