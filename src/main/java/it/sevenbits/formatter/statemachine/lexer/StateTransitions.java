@@ -12,23 +12,25 @@ import java.util.Map;
  * @author Minyukhin Ilya
  */
 public class StateTransitions implements IStateTransitions, IPut<State> {
-    private/* final */Map<Pair<State, Character>, State> transitions/* = new HashMap<>()*/;
+    private /*final*/ Map<Pair<State, Character>, State> transitions/* = new HashMap<>()*/;
 
     /**
      * The basic constructor that initializes the states map
      */
     StateTransitions() {
-        /*
-        states.put(new Pair<>(new State("default"), ' '), new State("spacing"));
-        states.put(new Pair<>(new State("spacing"), ' '), new State("spacing"));
+/*
+        transitions.put(new Pair<>(new State("default"), ' '), new State("spacing"));
+        transitions.put(new Pair<>(new State("spacing"), ' '), new State("spacing"));
 
-        states.put(new Pair<>(new State("default"), '/'), new State("slash"));
-        states.put(new Pair<>(new State("slash"), '/'), new State("onelinecomment"));
-        states.put(new Pair<>(new State("slash"), '*'), new State("openmultilinecomment"));
+        transitions.put(new Pair<>(new State("default"), '/'), new State("slash"));
+        transitions.put(new Pair<>(new State("slash"), '/'), new State("onelinecomment"));
+        transitions.put(new Pair<>(new State("slash"), '*'), new State("openmultilinecomment"));
 
-        states.put(new Pair<>(new State("default"), '*'), new State("star"));
-        states.put(new Pair<>(new State("star"), '/'), new State("closemultilinecomment"));
-        */
+        transitions.put(new Pair<>(new State("default"), '*'), new State("star"));
+        transitions.put(new Pair<>(new State("star"), '/'), new State("closemultilinecomment"));
+
+*/
+
 
         transitions = new HashMap<>();
     }
@@ -43,7 +45,7 @@ public class StateTransitions implements IStateTransitions, IPut<State> {
     }
 
     @Override
-    public void put(State state, Character character, State state2) {
+    public void put(final State state, final Character character, final State state2) {
         transitions.put(new Pair<>(state, character), state2);
     }
 }

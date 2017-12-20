@@ -19,7 +19,7 @@ public class LexerTest {
     public void testAnotherSimpleTokenize() throws ReaderException {
         ConfigExec configExec = new ConfigExec();
         IReader reader = new StringReader(
-                "  a  ");
+                "  a ");
 
         ILexer lexer = new Lexer(reader, configExec);
 
@@ -37,6 +37,8 @@ public class LexerTest {
         token = lexer.readToken();
         assertEquals("space", token.getName());
         assertEquals(" ", token.getLexeme());
+
+        assertFalse(lexer.hasNextToken());
     }
 
     @Test
@@ -96,6 +98,38 @@ public class LexerTest {
 
         assertTrue(lexer.hasNextToken());
         token = lexer.readToken();
+        assertEquals("onelinecomment", token.getName());
+        assertEquals("//", token.getLexeme());
+
+        assertTrue(lexer.hasNextToken());
+        token = lexer.readToken();
+        assertEquals("char", token.getName());
+        assertEquals("c", token.getLexeme());
+
+        assertTrue(lexer.hasNextToken());
+        token = lexer.readToken();
+        assertEquals("newline", token.getName());
+        assertEquals("\n", token.getLexeme());
+
+        assertTrue(lexer.hasNextToken());
+        token = lexer.readToken();
+        assertEquals("closebracket", token.getName());
+        assertEquals("}", token.getLexeme());
+
+        assertFalse(lexer.hasNextToken());
+    }
+
+    @Test
+    public void testSimpleTokenize2() throws ReaderException {
+        ConfigExec configExec = new ConfigExec();
+        IReader reader = new StringReader(
+                "//c\n" +
+                        "}");
+
+        ILexer lexer = new Lexer(reader, configExec);
+
+        assertTrue(lexer.hasNextToken());
+        IToken token = lexer.readToken();
         assertEquals("onelinecomment", token.getName());
         assertEquals("//", token.getLexeme());
 

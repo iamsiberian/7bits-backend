@@ -24,8 +24,9 @@ public class Lexer implements ILexer {
      * and passes into it the argument class that implements iReader interface
      *
      * @param reader class that implements iReader interface
+     * @param configExec
      */
-    public Lexer(final IReader reader, ConfigExec configExec) {
+    public Lexer(final IReader reader, final ConfigExec configExec) {
         this(reader, configExec.getRepository(), configExec.getTransitions());
     }
 
@@ -69,6 +70,7 @@ public class Lexer implements ILexer {
 
     private State step(final IReader iReader, final State state, final IContext icontext) throws ReaderException {
         char c = iReader.readNext();
+        System.out.println("State: " + state + " char: " + c);
         ICommand command = commands.getCommand(state, c);
         command.execute(c, icontext);
         return transitions.nextState(state, c);

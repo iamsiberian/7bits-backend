@@ -46,19 +46,26 @@ public class ConfigExec implements ICreateCommand {
                 }
 
                 String command = actionDef.get("command").toString();
-                String nextstate = actionDef.get("nextstate").toString();
+
+                State transition;
+                Object nextstate = actionDef.get("nextstate");
+                if (nextstate == null) {
+                    transition = null;
+                } else {
+                    transition = new State(nextstate.toString());
+                }
 
                 try {
                     commands.put(new State(stateName), input, createCommand(command));
-                    transitions.put(new State(stateName), input, new State(nextstate));
+                    transitions.put(new State(stateName), input, transition);
                 } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
-                    e.printStackTrace();
+                    throw new RuntimeException();
                 }
             }
         }
     }
 
-    public static ICommand createCommand(String className) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+    public static ICommand createCommand(final String className) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
         return (ICommand) Class.forName("it.sevenbits.formatter.statemachine.lexer.commands." + className).newInstance();
     }
 

@@ -34,8 +34,9 @@ public class ConfigExecTest {
         ICommand command = commands.getCommand(initState, initChar);
         assertEquals(trueCommand.getClass().getName(), command.getClass().getName());
 
-        State trueState = new State("default");
+        State trueState = null;
         State state = transitions.nextState(initState, initChar);
+
         assertEquals(trueState, state);
     }
 

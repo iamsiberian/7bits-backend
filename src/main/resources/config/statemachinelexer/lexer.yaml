@@ -2,19 +2,19 @@
   actions:
     - input: null
       command: 'Char'
-      nextstate: 'default'
+      nextstate: null
     - input: ';'
       command: 'Semicolon'
-      nextstate: 'default'
-    - input: '\n'
+      nextstate: null
+    - input: "\n"
       command: 'Newline'
-      nextstate: 'default'
+      nextstate: null
     - input: '{'
       command: 'OpenBracket'
-      nextstate: 'default'
+      nextstate: null
     - input: '}'
       command: 'CloseBracket'
-      nextstate: 'default'
+      nextstate: null
     - input: ' '
       command: 'Space'
       nextstate: 'spacing'
@@ -31,28 +31,38 @@
       nextstate: 'spacing'
     - input: null
       command: 'AppendPostpone'
-      nextstate: 'default'
+      nextstate: null
 - state: 'slash'
   actions:
     - input: '/'
       command: 'OneLineComment'
-      nextstate: 'default'
+      nextstate: null
     - input: '*'
       command: 'OpenMultiLineComment'
-      nextstate: 'default'
+      nextstate: null
     - input: null
       command: 'AppendPostpone'
-      nextstate: 'default'
+      nextstate: null
 - state: 'star'
   actions:
     - input: '/'
       command: 'CloseMultiLineComment'
-      nextstate: 'closemultilinecomment'
+      nextstate: null
     - input: null
       command: 'AppendPostpone'
-      nextstate: 'default'
+      nextstate: null
 - state: 'closemultilinecomment'
   actions:
     - input: null
       command: 'AppendPostpone'
-      nextstate: 'default'
+      nextstate: null
+- state: 'onelinecomment'
+  actions:
+    - input: null
+      command: 'AppendPostpone'
+      nextstate: null
+- state: 'openmultilinecomment'
+  actions:
+    - input: null
+      command: 'AppendPostpone'
+      nextstate: null
