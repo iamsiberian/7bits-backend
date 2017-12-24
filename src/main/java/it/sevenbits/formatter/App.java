@@ -2,8 +2,10 @@ package it.sevenbits.formatter;
 
 import it.sevenbits.formatter.io.file.FileReader;
 import it.sevenbits.formatter.io.file.FileWriter;
+import it.sevenbits.formatter.statemachine.formatter.ConfigExecFormatter;
 import it.sevenbits.formatter.statemachine.formatter.Formatter;
-import it.sevenbits.formatter.statemachine.lexer.ConfigExec;
+import it.sevenbits.formatter.statemachine.lexer.CommandRepository;
+import it.sevenbits.formatter.statemachine.lexer.ConfigExecLexer;
 import it.sevenbits.formatter.statemachine.lexer.Lexer;
 
 /**
@@ -28,9 +30,12 @@ public class App {
                     FileReader fileReader = new FileReader(args[0]);
                     FileWriter fileWriter = new FileWriter(args[1])
             ) {
-                ConfigExec configExec = new ConfigExec();
-                Lexer lexer = new Lexer(fileReader, configExec);
-                Formatter formatter = new Formatter();
+                ConfigExecLexer configExecLexer = new ConfigExecLexer();
+                Lexer lexer = new Lexer(fileReader, configExecLexer);
+
+                ConfigExecFormatter configExecFormatter = new ConfigExecFormatter();
+                Formatter formatter = new Formatter(configExecFormatter);
+
                 formatter.format(lexer, fileWriter);
             } catch (Exception e) {
                 throw new AppException("error in main()", e);

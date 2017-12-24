@@ -12,9 +12,7 @@ import java.util.Map;
  *
  * @author Minyukhin Ilya
  */
-public class ConfigExec implements ICreateCommand {
-
-    //private static final String COMMAND_PACKAGE = "it.sevenbits.formatter.statemachine.lexer.commands";
+public class ConfigExecLexer implements ICreateCommand {
 
     private CommandRepository commands;
     private StateTransitions transitions;
@@ -22,7 +20,7 @@ public class ConfigExec implements ICreateCommand {
     /**
      *
      */
-    public ConfigExec() {
+    public ConfigExecLexer() {
         commands = new CommandRepository();
         transitions = new StateTransitions();
 
@@ -56,17 +54,13 @@ public class ConfigExec implements ICreateCommand {
                 }
 
                 try {
-                    commands.put(new State(stateName), input, createCommand(command));
+                    commands.put(new State(stateName), input, ICreateCommand.createCommand(command));
                     transitions.put(new State(stateName), input, transition);
                 } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
                     throw new RuntimeException();
                 }
             }
         }
-    }
-
-    public static ICommand createCommand(final String className) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
-        return (ICommand) Class.forName("it.sevenbits.formatter.statemachine.lexer.commands." + className).newInstance();
     }
 
     public CommandRepository getRepository() {

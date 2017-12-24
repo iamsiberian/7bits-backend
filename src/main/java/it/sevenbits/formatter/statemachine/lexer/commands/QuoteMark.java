@@ -8,10 +8,10 @@ import it.sevenbits.formatter.statemachine.lexer.IContext;
  *
  * @author Minyukhin Ilya
  */
-public class CloseBracket implements ICommand {
+public class QuoteMark implements ICommand {
     @Override
     public void execute(char c, IContext context) {
         context.appendLexeme(c);
-        context.setTokenName("closebracket");
+        context.setTokenName("quotemark");
     }
 }

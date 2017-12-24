@@ -9,11 +9,17 @@
     - input: "\n"
       command: 'Newline'
       nextstate: null
-    - input: '{'
+    - input: '('
       command: 'OpenBracket'
       nextstate: null
-    - input: '}'
+    - input: ')'
       command: 'CloseBracket'
+      nextstate: null
+    - input: '{'
+      command: 'OpenBrace'
+      nextstate: null
+    - input: '}'
+      command: 'CloseBrace'
       nextstate: null
     - input: ' '
       command: 'Space'
@@ -24,6 +30,12 @@
     - input: '*'
       command: 'AppendLexeme'
       nextstate: 'star'
+    - input: '"'
+      command: 'QuoteMark'
+      nextstate: null
+    - input: 'f'
+      command: 'AppendLexeme'
+      nextstate: 'f'
 - state: 'spacing'
   actions:
     - input: ' '
@@ -51,18 +63,27 @@
     - input: null
       command: 'AppendPostpone'
       nextstate: null
-- state: 'closemultilinecomment'
+- state: 'f'
   actions:
+    - input: 'o'
+      command: 'AppendLexeme'
+      nextstate: 'fo'
     - input: null
-      command: 'AppendPostpone'
+      command: 'ReturnCharsAndAppendPostpone'
       nextstate: null
-- state: 'onelinecomment'
+- state: 'fo'
   actions:
+    - input: 'r'
+      command: 'AppendLexeme'
+      nextstate: 'for'
     - input: null
-      command: 'AppendPostpone'
+      command: 'ReturnCharsAndAppendPostpone'
       nextstate: null
-- state: 'openmultilinecomment'
+- state: 'for'
   actions:
+    - input: ' '
+      command: 'For'
+      nextstate: null
     - input: null
-      command: 'AppendPostpone'
+      command: 'ReturnCharsAndAppendPostpone'
       nextstate: null

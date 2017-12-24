@@ -1,7 +1,7 @@
 package it.sevenbits.formatter.lexer;
 import it.sevenbits.formatter.statemachine.State;
 import it.sevenbits.formatter.statemachine.lexer.CommandRepository;
-import it.sevenbits.formatter.statemachine.lexer.ConfigExec;
+import it.sevenbits.formatter.statemachine.lexer.ConfigExecLexer;
 import it.sevenbits.formatter.statemachine.lexer.ICommand;
 import it.sevenbits.formatter.statemachine.lexer.StateTransitions;
 import it.sevenbits.formatter.statemachine.lexer.commands.Char;
@@ -11,14 +11,11 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-/**
- *
- */
-public class ConfigExecTest {
+public class ConfigExecLexerTest {
 
     @Test
     public void testReadConfig() {
-        ConfigExec exec = new ConfigExec();
+        ConfigExecLexer exec = new ConfigExecLexer();
         assertNotNull(exec);
     }
 
@@ -26,7 +23,7 @@ public class ConfigExecTest {
     public void testDefault() {
         State initState = new State("default");
         char initChar = 'a';
-        ConfigExec exec = new ConfigExec();
+        ConfigExecLexer exec = new ConfigExecLexer();
         CommandRepository commands = exec.getRepository();
         StateTransitions transitions = exec.getTransitions();
 
@@ -42,7 +39,7 @@ public class ConfigExecTest {
 
     @Test
     public void testCfg() {
-        ConfigExec exec = new ConfigExec();
+        ConfigExecLexer exec = new ConfigExecLexer();
         CommandRepository commands = exec.getRepository();
         StateTransitions transitions = exec.getTransitions();
 
