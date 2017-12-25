@@ -1,5 +1,6 @@
 package it.sevenbits.formatter.statemachine.lexer;
 
+import it.sevenbits.formatter.statemachine.IPut;
 import it.sevenbits.formatter.statemachine.Pair;
 import it.sevenbits.formatter.statemachine.State;
 
@@ -11,7 +12,7 @@ import java.util.Map;
  *
  * @author Minyukhin Ilya
  */
-public class StateTransitions implements IStateTransitions, IPut<State> {
+public class StateTransitions implements IStateTransitions, IPut<Character, State> {
     private Map<Pair<State, Character>, State> transitions;
 
     /**
@@ -31,7 +32,7 @@ public class StateTransitions implements IStateTransitions, IPut<State> {
     }
 
     @Override
-    public void put(final State state, final Character character, final State state2) {
-        transitions.put(new Pair<>(state, character), state2);
+    public void put(final State state, final Character currentSymbol, final State nextState) {
+        transitions.put(new Pair<>(state, currentSymbol), nextState);
     }
 }

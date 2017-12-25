@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
+ * Class-loader configuration files for the lexer
  *
  * @author Minyukhin Ilya
  */
@@ -18,7 +18,7 @@ public class ConfigExecLexer implements ICreateCommand {
     private StateTransitions transitions;
 
     /**
-     *
+     * The basic constructor that initializes the commands & transitions maps
      */
     public ConfigExecLexer() {
         commands = new CommandRepository();

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Class for the config loading
+ * Class-loader configuration files for the ащкьфееук
  *
  * @author Minyukhin Ilya
  */

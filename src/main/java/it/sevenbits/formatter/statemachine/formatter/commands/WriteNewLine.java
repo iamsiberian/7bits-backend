@@ -6,13 +6,13 @@ import it.sevenbits.formatter.statemachine.formatter.IContext;
 import it.sevenbits.formatter.statemachine.token.IToken;
 
 /**
- *
+ * Class command that writes the newline separator
  *
  * @author Minyukhin Ilya
  */
 public class WriteNewLine implements ICommand {
     @Override
-    public void execute(IToken token, IContext context) throws ContextException {
+    public void execute(final IToken token, final IContext context) throws ContextException {
         context.writeNewLine();
     }
 }

@@ -5,7 +5,11 @@ import it.sevenbits.formatter.io.WriterException;
 import it.sevenbits.formatter.io.IClosable;
 import it.sevenbits.formatter.io.IWriter;
 
+import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
 
 /**
  * Class for writing char to file
@@ -23,7 +27,7 @@ public class FileWriter implements IWriter, IClosable {
      */
     public FileWriter(final String pathname) throws WriterException {
         try {
-            writer = new java.io.FileWriter(pathname);
+            writer = new OutputStreamWriter(Files.newOutputStream(FileSystems.getDefault().getPath(pathname)), StandardCharsets.UTF_8);
         } catch (Exception e) {
             throw new WriterException("error FileWriter initialization" , e);
         }

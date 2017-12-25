@@ -24,7 +24,7 @@ public class Lexer implements ILexer {
      * and passes into it the argument class that implements iReader interface
      *
      * @param reader class that implements iReader interface
-     * @param configExecLexer
+     * @param configExecLexer instance of a class-loader ConfigExecLexer
      */
     public Lexer(final IReader reader, final ConfigExecLexer configExecLexer) {
         this(reader, configExecLexer.getRepository(), configExecLexer.getTransitions());

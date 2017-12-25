@@ -74,4 +74,35 @@ public class FormatterTest {
 
         assertEquals(trueStroke, resultStroke);
     }
+
+    @Test
+    public void testCode2() throws ReaderException, ContextException {
+        String testStroke =
+                "   aaa {\n" +
+                "bbbb\n" +
+                "ccc;\n" +
+                "}\n" +
+                " aaa {\n" +
+                "}";
+        String trueStroke = "aaa {\n" +
+                "    bbbbccc;\n" +
+                "}\n" +
+                "aaa {\n" +
+                "}\n";
+
+        IReader stringReader = new StringReader(testStroke);
+        IWriter stringWriter = new StringWriter();
+
+        ConfigExecLexer configExecLexer = new ConfigExecLexer();
+        Lexer lexer = new Lexer(stringReader, configExecLexer);
+
+        ConfigExecFormatter configExecFormatter = new ConfigExecFormatter();
+        Formatter formatter = new Formatter(configExecFormatter);
+
+        formatter.format(lexer, stringWriter);
+
+        String resultStroke = stringWriter.toString();
+
+        assertEquals(trueStroke, resultStroke);
+    }
 }

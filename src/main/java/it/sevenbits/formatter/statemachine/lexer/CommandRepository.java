@@ -1,5 +1,6 @@
 package it.sevenbits.formatter.statemachine.lexer;
 
+import it.sevenbits.formatter.statemachine.IPut;
 import it.sevenbits.formatter.statemachine.Pair;
 import it.sevenbits.formatter.statemachine.State;
 
@@ -11,11 +12,11 @@ import java.util.Map;
  *
  * @author Minyukhin Ilya
  */
-public class CommandRepository implements ICommandRepository, IPut<ICommand> {
+public class CommandRepository implements ICommandRepository, IPut<Character, ICommand> {
     private Map<Pair<State, Character>, ICommand> commands;
 
     /**
-     * The basic constructor that initializes the command map
+     * The basic constructor which creates an instance of the class
      */
     CommandRepository() {
         commands = new HashMap<>();
@@ -31,8 +32,8 @@ public class CommandRepository implements ICommandRepository, IPut<ICommand> {
     }
 
     @Override
-    public void put(State state, Character character, ICommand command) {
-        commands.put(new Pair<>(state, character), command);
+    public void put(final State state, final Character currentSymbol, final ICommand command) {
+        commands.put(new Pair<>(state, currentSymbol), command);
     }
 
 }

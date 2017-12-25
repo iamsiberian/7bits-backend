@@ -6,13 +6,15 @@ import it.sevenbits.formatter.statemachine.formatter.IContext;
 import it.sevenbits.formatter.statemachine.token.IToken;
 
 /**
- *
+ * Class command that performs the necessary actions if encountered
+ * closing curly brace at the beginning of the line
  *
  * @author Minyukhin Ilya
  */
 public class CloseBraceInStartLine implements ICommand {
+
     @Override
-    public void execute(IToken token, IContext context) throws ContextException {
+    public void execute(final IToken token, final IContext context) throws ContextException {
         context.decreaseCountLevel();
         context.writeIndent();
         context.writeLexeme(token.getLexeme());

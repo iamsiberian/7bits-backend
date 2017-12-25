@@ -5,9 +5,11 @@ import it.sevenbits.formatter.io.ReaderException;
 import it.sevenbits.formatter.io.IClosable;
 import it.sevenbits.formatter.io.IReader;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.Reader;
+import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
 
 /**
  * Class for reading char from file
@@ -27,7 +29,7 @@ public class FileReader implements IClosable, IReader {
      */
     public FileReader(final String pathname) throws ReaderException {
         try {
-            reader = new java.io.FileReader(pathname);
+            reader = new InputStreamReader(Files.newInputStream(FileSystems.getDefault().getPath(pathname)), StandardCharsets.UTF_8);
             byteSymbol = reader.read();
         } catch (FileNotFoundException e) {
             throw new ReaderException("file not found", e);

@@ -17,8 +17,9 @@ public class Formatter implements IFormatter {
 
     /**
      * The basic constructor that initializes the instance of a class
+     * @param configExecFormatter instance of a class-loader ConfigExecFormatter
      */
-    public Formatter(ConfigExecFormatter configExecFormatter) {
+    public Formatter(final ConfigExecFormatter configExecFormatter) {
         commands = configExecFormatter.getRepository();
         transitions = configExecFormatter.getTransitions();
     }
