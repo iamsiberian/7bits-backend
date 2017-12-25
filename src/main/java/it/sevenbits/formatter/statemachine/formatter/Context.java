@@ -57,7 +57,8 @@ public class Context implements IContext {
     @Override
     public void writeNewLine() throws ContextException {
         try {
-            writer.write('\n');
+            //writer.write('\n');
+            writer.write(LineSeparator.get());
         } catch (WriterException e) {
             throw new ContextException("error in Context.writeNewLine()", e);
         }

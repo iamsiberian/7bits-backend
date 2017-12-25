@@ -8,6 +8,7 @@ import it.sevenbits.formatter.io.string.StringWriter;
 import it.sevenbits.formatter.statemachine.formatter.ConfigExecFormatter;
 import it.sevenbits.formatter.statemachine.formatter.ContextException;
 import it.sevenbits.formatter.statemachine.formatter.Formatter;
+import it.sevenbits.formatter.statemachine.formatter.LineSeparator;
 import it.sevenbits.formatter.statemachine.lexer.ConfigExecLexer;
 import it.sevenbits.formatter.statemachine.lexer.Lexer;
 import org.junit.Test;
@@ -15,10 +16,12 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class FormatterBraceTest {
+    private static final String lineSeparator = LineSeparator.get();
+
     @Test
     public void testBrace1() throws ContextException, ReaderException {
         String testStroke = "{a;}";
-        String trueStroke = "{\n    a;\n}\n";
+        String trueStroke = "{" + lineSeparator + "    a;" + lineSeparator + "}" + lineSeparator;
 
         IReader stringReader = new StringReader(testStroke);
         IWriter stringWriter = new StringWriter();
@@ -39,10 +42,10 @@ public class FormatterBraceTest {
     @Test
     public void testFormatterBrace() throws ContextException, ReaderException {
         String testStroke = "a {\nb;a;\n}";
-        String trueStroke = "a {\n" +
-                "    b;\n" +
-                "    a;\n" +
-                "}\n";
+        String trueStroke = "a {" + lineSeparator +
+                "    b;" + lineSeparator +
+                "    a;" + lineSeparator +
+                "}" + lineSeparator;
 
         IReader stringReader = new StringReader(testStroke);
         IWriter stringWriter = new StringWriter();
@@ -63,7 +66,7 @@ public class FormatterBraceTest {
     @Test
     public void testTextWithBraces() throws ReaderException, ContextException {
         String testStroke = "   aaa {\nbbbb\nccc;\n}\n aaa {\n}";
-        String trueStroke = "aaa {\n    bbbbccc;\n}\naaa {\n}\n";
+        String trueStroke = "aaa {" + lineSeparator + "    bbbbccc;" + lineSeparator + "}" + lineSeparator + "aaa {" + lineSeparator + "}" + lineSeparator;
 
         IReader stringReader = new StringReader(testStroke);
         IWriter stringWriter = new StringWriter();
@@ -84,7 +87,7 @@ public class FormatterBraceTest {
     @Test
     public void testFormatterFirstLineWithOpenBrace() throws ReaderException, ContextException {
         String testStroke = "a {a";
-        String trueStroke = "a {\n    a";
+        String trueStroke = "a {" + lineSeparator + "    a";
 
         IReader stringReader = new StringReader(testStroke);
         IWriter stringWriter = new StringWriter();
@@ -105,7 +108,7 @@ public class FormatterBraceTest {
     @Test
     public void testFormatterFirstLineWithCloseBrace() throws ReaderException, ContextException {
         String testStroke = "a}a";
-        String trueStroke = "a\n}\na";
+        String trueStroke = "a" + lineSeparator + "}" + lineSeparator + "a";
 
         IReader stringReader = new StringReader(testStroke);
         IWriter stringWriter = new StringWriter();

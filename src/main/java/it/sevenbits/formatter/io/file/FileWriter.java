@@ -38,7 +38,7 @@ public class FileWriter implements IWriter, IClosable {
         try {
             writer.write(c);
         } catch (Exception e) {
-            throw new WriterException("(char) writer.write() error" , e);
+            throw new WriterException("writer.write(" + c + ") error" , e);
         }
     }
 
@@ -56,7 +56,7 @@ public class FileWriter implements IWriter, IClosable {
         try {
             writer.write(s);
         } catch (Exception e) {
-            throw new  WriterException("error in write(String s);", e);
+            throw new  WriterException("error in write(" + s + ");", e);
         }
     }
 }

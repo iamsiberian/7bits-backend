@@ -9,6 +9,9 @@
     - input: "\n"
       command: 'Newline'
       nextstate: null
+    - input: "\r"
+      command: 'CarriageReturn'
+      nextstate: null
     - input: '('
       command: 'OpenBracket'
       nextstate: null

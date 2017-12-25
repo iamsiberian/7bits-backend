@@ -8,6 +8,7 @@ import it.sevenbits.formatter.io.string.StringWriter;
 import it.sevenbits.formatter.statemachine.formatter.ConfigExecFormatter;
 import it.sevenbits.formatter.statemachine.formatter.ContextException;
 import it.sevenbits.formatter.statemachine.formatter.Formatter;
+import it.sevenbits.formatter.statemachine.formatter.LineSeparator;
 import it.sevenbits.formatter.statemachine.lexer.ConfigExecLexer;
 import it.sevenbits.formatter.statemachine.lexer.Lexer;
 import org.junit.Test;
@@ -15,10 +16,12 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class FormatterCommentsTest {
+    private static final String lineSeparator = LineSeparator.get();
+
     @Test
     public void testMultiComment() throws ReaderException, ContextException {
         String testStroke = "/*asd; asd\n {}*/";
-        String trueStroke = "/*asd; asd\n {}*/\n";
+        String trueStroke = "/*asd; asd" + lineSeparator + " {}*/" + lineSeparator;
 
         IReader stringReader = new StringReader(testStroke);
         IWriter stringWriter = new StringWriter();
@@ -39,7 +42,7 @@ public class FormatterCommentsTest {
     @Test
     public void testMultiCommentWithWhiteSpaces() throws ReaderException, ContextException {
         String testStroke = "  /*asd; asd\n {}*/";
-        String trueStroke = "/*asd; asd\n {}*/\n";
+        String trueStroke = "/*asd; asd" + lineSeparator + " {}*/" + lineSeparator;
 
         IReader stringReader = new StringReader(testStroke);
         IWriter stringWriter = new StringWriter();
@@ -60,7 +63,7 @@ public class FormatterCommentsTest {
     @Test
     public void testLineComment() throws ReaderException, ContextException{
         String testStroke = "//asd  {}\n";
-        String trueStroke = "//asd  {}\n";
+        String trueStroke = "//asd  {}" + lineSeparator;
 
         IReader stringReader = new StringReader(testStroke);
         IWriter stringWriter = new StringWriter();
