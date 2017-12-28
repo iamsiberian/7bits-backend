@@ -12,9 +12,7 @@ public class LineSeparator {
         String os = System.getProperty("os.name").toLowerCase();
         if (os.contains("win")) {
             lineSeparator = "\r\n";
-        } else if (os.contains("mac os x") || os.contains("os x") || os.contains("macos")) {
-            lineSeparator = "\n";
-        } else if (os.contains("nix") || os.contains("nux")) {
+        } else {
             lineSeparator = "\n";
         }
     }
